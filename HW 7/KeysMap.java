@@ -15,22 +15,5 @@ public class KeysMap {
         System.out.println(map.entrySet().stream()
                 .map((entryMap) -> entryMap.getKey())
                 .collect(Collectors.joining(",", "{", "}")));
-
-        /*Map<Integer, Integer> map = new HashMap<>();
-        map.put(0, 1);
-        map.put(1, 2);
-        map.put(2, 3);
-        Set<Entry<Integer, Integer>> set = map.entrySet();
-        Integer keys = set.stream()
-                .map((entryMap) -> entryMap.getKey())
-                .collect(Collectors.joining(","));
-        System.out.println(keys);*/
-        /*Set<Entry<Integer, Integer>> set = map.entrySet();
-        System.out.println(set.stream()
-                .map(Entry::getKey))
-                .collect(Collectors.joining(",", "{", "}"));*/
-
-        //System.out.println(keys);
-
     }
 }
