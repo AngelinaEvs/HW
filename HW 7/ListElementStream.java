@@ -13,6 +13,6 @@ public class ListElementStream {
 
         first.stream()
                 .filter(o -> o > maxSecond)
-                .forEach(System.out::println); //.forEach(x -> System.out.println(x));
+                .forEach(System.out::println);
     }
 }
