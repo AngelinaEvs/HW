@@ -134,7 +134,6 @@ public class Commands {
             }
             else {
                 if (Files.exists(temporary)) {
-                    System.out.println("+++");
                     Files.copy(temporary, new File(path + "\\" +
                             temporary.toString().substring(temporary.toString().lastIndexOf("\\") + 1)).toPath(),
                             StandardCopyOption.REPLACE_EXISTING);
