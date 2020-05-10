@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.CharBuffer;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class ReaderINI extends Reader {
     private BufferedReader in;
@@ -10,13 +12,15 @@ public class ReaderINI extends Reader {
         this.in = new BufferedReader(in);
     }
 
-    public void readINI() throws IOException {
+    public Map<String, String> readINI() throws IOException {
         try {
-            String line = in.readLine();
-            while (line != null) {
-                System.out.println(line);
-                line = in.readLine();
+            String line;
+            Map<String, String> data = new TreeMap<>();
+            while ((line = in.readLine()) != null) {
+                String[] keyAndValue = line.split("=", 2);
+                data.put(keyAndValue[0], keyAndValue[1]);
             }
+            return data;
         } catch (IOException e) {
             throw new IOException("Cannot read the ini-file");
         }
