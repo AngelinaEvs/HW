@@ -11,7 +11,7 @@ public class CommandThread implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println("Enter tho command:");
+            System.out.println("Enter the command:");
             commands(sc.next());
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
@@ -20,13 +20,13 @@ public class CommandThread implements Runnable {
 
     private void commands(String command) throws URISyntaxException, IOException {
         switch (command) {
-            case ("st"):
+            case "start":
                 download();
                 break;
-            case ("ch"):
+            case "ch":
                 checkPercents();
                 break;
-            case ("stop"):
+            case "stop":
                 stop();
                 break;
             default:
@@ -51,19 +51,23 @@ public class CommandThread implements Runnable {
     }
 
     private void checkPercents() throws URISyntaxException, IOException {
-        int lengthFile = downloadThread.getUri().toURL().openConnection().getContentLength();
-        long nowLengthFile = 0;
+        double lengthFile = downloadThread.getUri().toURL().openConnection().getContentLength();
+        double nowLengthFile = 0;
         if (downloadThread.getFileExtension() != null) {
             nowLengthFile = downloadThread.getFile().length();
         }
-        System.out.println((nowLengthFile / lengthFile) * 100 + "%");
+        System.out.println(( nowLengthFile / lengthFile) * 100 + "%");
         System.out.println("Enter the command:");
         commands(sc.next());
     }
 
     private void stop() throws URISyntaxException, IOException {
-        downloadThread.interrupt();
-        System.out.println("Enter the command:");
-        commands(sc.next());
+        if (downloadThread != null) {
+            downloadThread.interrupt();
+            downloadThread.getFile().delete();
+            System.out.println("Thread is stopped");
+            System.out.println("Enter the command:");
+            commands(sc.next());
+        } else System.out.print("Thread is null");
     }
 }
