@@ -64,9 +64,7 @@ public class DownloadSmthFromSite {
                                     sb.append(line.charAt(i));
                                     i++;
                                 }
-                                System.out.println(sb.toString());
                                 if (!(new URI(sb.toString()).isAbsolute())) sb.insert(0, "https://" + uri.toString().split("//")[1].split("/")[0]);
-                                System.out.println(sb.toString());
                                 URI u = new URI(sb.toString());
                                 download(u, path, "Page" + count);
                                 count++;
