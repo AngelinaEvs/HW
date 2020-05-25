@@ -25,13 +25,11 @@ public class DownloadThread extends Thread {
     public void run() {
         try {
             URLConnection connection = uri.toURL().openConnection();
-            if (!Thread.interrupted()) {
-                fileExtension = MimeTypes.getDefaultMimeTypes().forName(connection.getContentType().split(";")[0]).getExtension();
-                BufferedInputStream in = new BufferedInputStream(connection.getInputStream());
-                file = new File(path + "\\" + name + fileExtension);
-                Files.copy(in, file.toPath());
-                if (file.delete()) System.out.println("The download is interrupted");
-            } else System.out.println("The download is interrupted");
+            fileExtension = MimeTypes.getDefaultMimeTypes().forName(connection.getContentType().split(";")[0]).getExtension();
+            BufferedInputStream in = new BufferedInputStream(connection.getInputStream());
+            file = new File(path + "\\" + name + fileExtension);
+            Files.copy(in, file.toPath());
+            System.out.println("File is created");
         } catch (IOException | MimeTypeException e) {
             System.out.println(e.getMessage());
         }

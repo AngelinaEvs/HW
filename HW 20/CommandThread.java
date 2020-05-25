@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
@@ -28,6 +29,8 @@ public class CommandThread implements Runnable {
                 break;
             case "stop":
                 stop();
+                break;
+            case "exit":
                 break;
             default:
                 System.out.println("Try again.");
@@ -64,7 +67,7 @@ public class CommandThread implements Runnable {
     private void stop() throws URISyntaxException, IOException {
         if (downloadThread != null) {
             downloadThread.interrupt();
-            downloadThread.getFile().delete();
+            Files.delete(downloadThread.getFile().toPath());
             System.out.println("Thread is stopped");
             System.out.println("Enter the command:");
             commands(sc.next());
