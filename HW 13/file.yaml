@@ -1,0 +1,4 @@
+--- !Student
+averageScore: !java.lang.Double 86.0
+group: 902
+name: Angelina
